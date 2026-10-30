@@ -32,7 +32,7 @@
     "developerName": "Antoine van der Lee",
     "category": "Productivity",
     "websiteURL": "https://www.videocompression.app",
-    "supportURL": "https://github.com/AvdLee/Video-Compression-Agent-Skill/issues",
+    "supportURL": "https://www.videocompression.app/support/",
     "defaultPrompt": [
       "Compress this video so it is much smaller but still looks the same.",
       "Fit this clip under the Discord upload limit.",
