@@ -2,14 +2,19 @@
 
 <p align="center"><a href="https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill"><img src="assets/banner.png" alt="Video Compressor agent skill: compress video from your agent. Works with Claude Code, Cursor and Codex. Also on iPhone and iPad at videocompression.app" width="100%"></a></p>
 
+<p align="center"><a href="#install"><b>Install the skill</b></a> · <a href="https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme-top_001"><b>Get the iPhone app</b></a> · <a href="https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill"><b>videocompression.app</b></a></p>
+
 I built this [Agent Skill](https://agent-plugins.org) to let your agent compress video files for you. It checks what your machine can do,
 decides which files are worth compressing, encodes them to HEVC (or H.264), verifies every result and leaves the original untouched.
 
 It works with Claude Code, Cursor, Codex and any agent that reads `SKILL.md`. It is one Python 3 file with no dependencies, it makes no
 network calls unless you ask for one, and it sends nothing anywhere.
 
-I also build [Video Compressor](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill), an iPhone and iPad
-app that compresses videos on the device. The presets in this skill follow the same preset logic, so I could reuse what the app already does.
+> **Do you have videos on an iPhone or iPad?** The skill cannot reach the Photos library of a phone, so I built
+> [Video Compressor](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill) for that. It compresses the
+> videos on the device itself, and the presets in this skill follow the same preset logic.
+>
+> <a href="https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme-callout_001"><img src="assets/app-store-badge.svg" alt="Download Video Compressor on the App Store" height="44"></a>
 
 ## What it does
 
@@ -164,9 +169,9 @@ No. Everything runs locally. I did not add any telemetry, and the only network u
 
 ## Compress on your iPhone
 
-The skill works on files on a computer. It cannot reach the Photos library of a phone. For videos on an iPhone or iPad, I built the
-[Video Compressor app](https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme_001), which compresses videos on the
-device. Product page: [videocompression.app](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill).
+The skill works on files on a computer. For videos on an iPhone or iPad, use the
+[Video Compressor app](https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme_001) I built. Product page and guides:
+[videocompression.app](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill).
 
 ## About me
 
