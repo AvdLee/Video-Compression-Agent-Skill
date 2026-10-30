@@ -2,16 +2,19 @@
 
 <p align="center"><a href="https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill"><img src="assets/banner.png" alt="Video Compressor agent skill: compress video from your agent. Works with Claude Code, Cursor and Codex. Also on iPhone and iPad at videocompression.app" width="100%"></a></p>
 
-An [Agent Skill](https://agent-plugins.org) that compresses video files for you. Your agent checks what the machine can do, decides which
-files are worth compressing, encodes them to HEVC (or H.264), verifies every result and leaves the original untouched.
+I built this [Agent Skill](https://agent-plugins.org) to let your agent compress video files for you. It checks what your machine can do,
+decides which files are worth compressing, encodes them to HEVC (or H.264), verifies every result and leaves the original untouched.
 
 It works with Claude Code, Cursor, Codex and any agent that reads `SKILL.md`. It is one Python 3 file with no dependencies, it makes no
 network calls unless you ask for one, and it sends nothing anywhere.
 
+I also build [Video Compressor](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill), an iPhone and iPad
+app that compresses videos on the device. The presets in this skill follow the same preset logic, so I could reuse what the app already does.
+
 ## What it does
 
 - **Decides before it encodes.** Files that are already efficient are skipped, so a re-encode never makes a file bigger.
-- **Four presets** (`premium`, `high`, `balanced`, `max-saving`) that follow the preset logic of the Video Compressor iPhone app.
+- **Four presets** (`premium`, `high`, `balanced`, `max-saving`) that follow the preset logic of my Video Compressor iPhone app.
 - **Size targets.** Fit a clip under Discord, WhatsApp, email or Slack limits, or any number of megabytes, with bitrate math and two-pass encoding.
 - **Verifies every output.** Duration, audio, frame rate, resolution and size are checked. A failed output is deleted and the original is never touched.
 - **Handles iPhone footage.** HEVC is tagged `hvc1`, HDR stays HDR, rotation and metadata are kept, and Live Photo, Cinematic and
@@ -78,14 +81,14 @@ A file is skipped, with a reason, when:
 - it is a Live Photo video, Cinematic or spatial video, or Dolby Vision profile 5 (the format would not survive a normal encode),
 - or the result would not be smaller than the original (`not_smaller`, the output is deleted).
 
-The rules, what is mirrored from the app and what is the skill's own calibration are documented in
+The rules, what I mirrored from the app and what is the skill's own calibration are documented in
 [presets.md](skills/video-compression/references/presets.md).
 
 ## Benchmark
 
-Measured on 2026-10-30 with [`tools/benchmark.py`](tools/benchmark.py) on 8 real iPhone 15 Pro clips (H.264, 1080p, about 205 seconds in
-total) and on the 8 `balanced` outputs of those clips (already compressed once). Mac with `hevc_videotoolbox`, quality is VMAF on a
-centered crop of the first 15 seconds. Full tables and the method are in [benchmark.md](skills/video-compression/references/benchmark.md),
+I measured this on 2026-10-30 with [`tools/benchmark.py`](tools/benchmark.py) on 8 real iPhone 15 Pro clips (H.264, 1080p, about 205 seconds in
+total) and on the 8 `balanced` outputs of those clips (already compressed once). I ran it on a Mac with `hevc_videotoolbox`, and quality is
+VMAF on a centered crop of the first 15 seconds. Full tables and the method are in [benchmark.md](skills/video-compression/references/benchmark.md),
 raw numbers in [benchmark-results.json](skills/video-compression/references/benchmark-results.json).
 
 **Clips as recorded (8 clips)**
@@ -109,13 +112,13 @@ raw numbers in [benchmark-results.json](skills/video-compression/references/benc
 | plain `ffmpeg -crf 23` with libx264 | 3 of 8 files got bigger |
 | plain `ffmpeg -crf 23` with libx265 | 1 of 8 files got bigger |
 
-On fresh iPhone footage a plain `-crf 23` re-encode saves as much or more than the presets. The skill is not a better encoder. What it adds
-is the decision about whether to encode at all, size targets, correct tags and metadata, HDR handling and verification. On other content
+On fresh iPhone footage a plain `-crf 23` re-encode saves as much or more than the presets. I did not build a better encoder. What the skill
+adds is the decision about whether to encode at all, size targets, correct tags and metadata, HDR handling and verification. On other content
 (screen recordings, animation, small web videos) results will differ.
 
 ## Compared with general ffmpeg skills
 
-These projects do more than compress video, and this table only covers compression. Facts were checked on 2026-10-30 from each
+These projects do more than compress video, and this table only covers compression. I checked the facts on 2026-10-30 from each
 repository's README and file list.
 
 | | This skill | [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) | [n0an/ffmpeg-skill](https://github.com/n0an/ffmpeg-skill) |
@@ -157,13 +160,17 @@ metadata. Dolby Vision profile 5 is skipped. Details are in [apple-video.md](ski
 
 ### Does it send my videos anywhere?
 
-No. Everything runs locally. There is no telemetry, and the only network use is the optional `--allow-download`.
+No. Everything runs locally. I did not add any telemetry, and the only network use is the optional `--allow-download`.
 
 ## Compress on your iPhone
 
-The skill works on files on a computer. It cannot reach the Photos library of a phone. For videos on an iPhone or iPad, the same author
-makes the [Video Compressor app](https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme_001), which compresses videos on
-the device. Product page: [videocompression.app](https://www.videocompression.app).
+The skill works on files on a computer. It cannot reach the Photos library of a phone. For videos on an iPhone or iPad, I built the
+[Video Compressor app](https://apps.apple.com/app/id6810118769?pt=117264678&ct=agent-skill_readme_001), which compresses videos on the
+device. Product page: [videocompression.app](https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill).
+
+## About me
+
+I'm Antoine van der Lee, an indie developer. I write [SwiftLee](https://www.avanderlee.com) and build RocketSim and Video Compressor.
 
 ## Development
 
