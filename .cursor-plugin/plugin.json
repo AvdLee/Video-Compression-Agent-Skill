@@ -1,6 +1,6 @@
 {
   "name": "video-compression",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original.",
   "author": {
     "name": "Antoine van der Lee",

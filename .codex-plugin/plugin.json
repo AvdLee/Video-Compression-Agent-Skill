@@ -1,6 +1,6 @@
 {
   "name": "video-compression",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original.",
   "author": {
     "name": "Antoine van der Lee",
@@ -32,6 +32,7 @@
     "developerName": "Antoine van der Lee",
     "category": "Productivity",
     "websiteURL": "https://www.videocompression.app",
+    "supportURL": "https://github.com/AvdLee/Video-Compression-Agent-Skill/issues",
     "defaultPrompt": [
       "Compress this video so it is much smaller but still looks the same.",
       "Fit this clip under the Discord upload limit.",
