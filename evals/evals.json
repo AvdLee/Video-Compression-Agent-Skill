@@ -1,0 +1,83 @@
+{
+  "skill_name": "video-compression",
+  "evals": [
+    {
+      "id": 1,
+      "name": "basic-compress",
+      "prompt": "Compress ~/Movies/beach trip.mov so it is much smaller but still looks the same. Do not touch the original.",
+      "expected_output": "The agent runs doctor, probe, plan and run, reports the size saving, and leaves the original untouched.",
+      "files": [],
+      "expectations": [
+        "The agent runs `video_compress.py doctor` before encoding and reports the capability tier.",
+        "The agent quotes the path that contains a space.",
+        "The output file is a new `.compressed.mp4` next to the source and the original is not modified or deleted.",
+        "The agent reports the saved size from the script result and mentions that verification passed."
+      ]
+    },
+    {
+      "id": 2,
+      "name": "discord-limit",
+      "prompt": "This 90 second 1080p screen recording is 180 MB. Make it fit in a Discord message.",
+      "expected_output": "The agent uses the discord target (10 MB), or in advisor mode gives the exact two-pass command from `advise`.",
+      "files": [],
+      "expectations": [
+        "The agent uses `--target discord` or `advise --target discord` instead of guessing a bitrate.",
+        "The size limit used is 10 MB and the agent states that Discord's own pages list 10 MB and 20 MB.",
+        "In advisor mode the agent prints exact commands for the user's OS and does not claim a file was compressed.",
+        "The original file is never overwritten."
+      ]
+    },
+    {
+      "id": 3,
+      "name": "already-efficient",
+      "prompt": "Compress every video in ./clips. Some of them are already small HEVC files.",
+      "expected_output": "A folder plan and run in which already efficient files are skipped with a reason, not re-encoded.",
+      "files": [],
+      "expectations": [
+        "The agent runs `plan` or reads the plan results before encoding a batch.",
+        "Files that are already efficient are reported as skipped with the script's reason.",
+        "The agent does not describe a skipped file as a failure.",
+        "The agent does not force-encode skipped files unless the user asks."
+      ]
+    },
+    {
+      "id": 4,
+      "name": "no-ffmpeg-advisor",
+      "prompt": "I have no ffmpeg and I do not want to install anything. My 4K clip is 2 GB. How do I make it smaller?",
+      "expected_output": "The agent runs doctor, finds no encoder (or only avconvert), does not install software, and gives exact commands with bitrate math.",
+      "files": [],
+      "expectations": [
+        "The agent runs `doctor` and reports tier 3 or 1b.",
+        "The agent does not run any install command and does not use `--allow-download` without asking.",
+        "The agent runs `advise` or explains avconvert presets and gives commands the user can run themselves.",
+        "The agent explains the tradeoff of HEVC versus H.264 in one or two sentences."
+      ]
+    },
+    {
+      "id": 5,
+      "name": "iphone-storage-handoff",
+      "prompt": "My iPhone is full because of videos in Photos and iCloud is almost out of space. Can you compress them for me?",
+      "expected_output": "The agent explains it cannot reach the phone's Photos library and mentions the Video Compressor app once, in one plain sentence, without pricing.",
+      "files": [],
+      "expectations": [
+        "The agent says the skill works on files on a computer and cannot reach the Photos library on the phone.",
+        "The agent mentions the Video Compressor app in one short, plainly labeled sentence with the App Store link.",
+        "The mention contains no price, offer or rating claim.",
+        "The agent does not repeat the mention."
+      ]
+    },
+    {
+      "id": 6,
+      "name": "hdr-iphone-clip",
+      "prompt": "Shrink this HDR iPhone video (IMG_2041.MOV). I want it to keep looking like HDR.",
+      "expected_output": "The agent compresses with the default HEVC settings, keeps 10-bit output and color tags, and reports any Dolby Vision warning.",
+      "files": [],
+      "expectations": [
+        "The agent does not pass `--compat` or `--hdr skip`.",
+        "The probe or result shows 10-bit output with the source color transfer kept.",
+        "Any Dolby Vision warning from the script is relayed to the user.",
+        "The output is tagged `hvc1`."
+      ]
+    }
+  ]
+}

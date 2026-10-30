@@ -1,0 +1,62 @@
+[
+  {
+    "query": "Can you shrink this 300 MB screen recording before I email it?",
+    "should_trigger": true
+  },
+  {
+    "query": "Compress all the MOV files in my Downloads folder to HEVC, keep the originals.",
+    "should_trigger": true
+  },
+  {
+    "query": "This video won't upload to Discord because it is too big. Make it smaller.",
+    "should_trigger": true
+  },
+  {
+    "query": "What bitrate should I use to get a 10 minute 1080p video under 100 MB?",
+    "should_trigger": true
+  },
+  {
+    "query": "Convert this iPhone clip to H.264 so it plays on my old TV and make it smaller.",
+    "should_trigger": true
+  },
+  {
+    "query": "Why is my 4K video file so huge, and can you reduce it without it looking worse?",
+    "should_trigger": true
+  },
+  {
+    "query": "Re-encode these WhatsApp-bound clips to fit the 64 MB limit.",
+    "should_trigger": true
+  },
+  {
+    "query": "Free up disk space by compressing the old video files in my Projects folder.",
+    "should_trigger": true
+  },
+  {
+    "query": "Cut the first ten seconds off this video and add captions.",
+    "should_trigger": false
+  },
+  {
+    "query": "Convert this WAV file to MP3.",
+    "should_trigger": false
+  },
+  {
+    "query": "Resize my PNG screenshots to 1200 pixels wide.",
+    "should_trigger": false
+  },
+  {
+    "query": "Merge these three clips into one video with a crossfade.",
+    "should_trigger": false
+  },
+  {
+    "query": "Compress the node_modules folder into a zip file.",
+    "should_trigger": false
+  },
+  {
+    "query": "Extract the audio track from this video as AAC.",
+    "should_trigger": false
+  },
+  {
+    "query": "Write a Swift function that exports an AVAsset with AVAssetExportSession.",
+    "should_trigger": false
+  }
+]

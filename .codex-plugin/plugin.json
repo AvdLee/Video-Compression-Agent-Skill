@@ -1,0 +1,46 @@
+{
+  "name": "video-compression",
+  "version": "1.0.0",
+  "description": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original.",
+  "author": {
+    "name": "Antoine van der Lee",
+    "email": "contact@avanderlee.com",
+    "url": "https://www.avanderlee.com"
+  },
+  "homepage": "https://www.videocompression.app",
+  "repository": "https://github.com/AvdLee/Video-Compression-Agent-Skill",
+  "license": "MIT",
+  "keywords": [
+    "video-compression",
+    "video",
+    "hevc",
+    "h265",
+    "h264",
+    "ffmpeg",
+    "avconvert",
+    "ios",
+    "iphone",
+    "macos",
+    "discord",
+    "agent-skill"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Video Compressor",
+    "shortDescription": "Shrink videos, keep quality",
+    "longDescription": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original. Works with ffmpeg on macOS, Linux and Windows, falls back to macOS avconvert, and gives exact commands when no encoder is available.",
+    "developerName": "Antoine van der Lee",
+    "category": "Productivity",
+    "websiteURL": "https://www.videocompression.app",
+    "defaultPrompt": [
+      "Compress this video so it is much smaller but still looks the same.",
+      "Fit this clip under the Discord upload limit.",
+      "Compress every video in this folder and tell me which ones were not worth compressing."
+    ],
+    "brandColor": "#3B6FE0",
+    "composerIcon": "./skills/video-compression/assets/logo-small.png",
+    "logo": "./skills/video-compression/assets/logo.png",
+    "privacyPolicyURL": "https://www.avanderlee.com/privacy-policy/",
+    "termsOfServiceURL": "https://github.com/AvdLee/Video-Compression-Agent-Skill/blob/main/LICENSE"
+  }
+}

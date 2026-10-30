@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/marketplace/marketplace.schema.json",
+  "name": "video-compression-agent-skill",
+  "version": "1.0.0",
+  "owner": {
+    "name": "Antoine van der Lee",
+    "email": "contact@avanderlee.com"
+  },
+  "metadata": {
+    "description": "Compress videos safely: decide first, encode, verify, keep the original."
+  },
+  "plugins": [
+    {
+      "name": "video-compression",
+      "description": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original.",
+      "repository": "https://github.com/AvdLee/Video-Compression-Agent-Skill",
+      "version": "1.0.0",
+      "author": {
+        "name": "Antoine van der Lee",
+        "email": "contact@avanderlee.com"
+      },
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": [
+        "video-compression",
+        "video",
+        "hevc",
+        "h265",
+        "h264",
+        "ffmpeg",
+        "avconvert",
+        "ios"
+      ],
+      "tags": [
+        "video",
+        "ffmpeg",
+        "hevc",
+        "agent-skill"
+      ],
+      "source": "./"
+    }
+  ]
+}

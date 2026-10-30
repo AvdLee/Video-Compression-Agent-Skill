@@ -1,0 +1,27 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install ffmpeg
+        run: brew install ffmpeg
+      - name: Compile Python
+        run: python3 -m compileall skills/video-compression/scripts tests tools
+      - name: Run tests
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate metadata
+        run: |
+          for f in plugin.json .claude-plugin/plugin.json .claude-plugin/marketplace.json .cursor-plugin/plugin.json .codex-plugin/plugin.json package.json; do
+            python3 -m json.tool "$f" >/dev/null
+          done
