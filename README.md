@@ -121,17 +121,6 @@ On fresh iPhone footage a plain `-crf 23` re-encode saves as much or more than t
 adds is the decision about whether to encode at all, size targets, correct tags and metadata, HDR handling and verification. On other content
 (screen recordings, animation, small web videos) results will differ.
 
-## Compared with general ffmpeg skills
-
-These projects do more than compress video, and this table only covers compression. I checked the facts on 2026-10-30 from each
-repository's README and file list.
-
-| | This skill | [kajisho5/ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) | [n0an/ffmpeg-skill](https://github.com/n0an/ffmpeg-skill) |
-| --- | --- | --- | --- |
-| Scope | One job: compress and verify | Video editor with 42 tools and an MCP server | FFmpeg recipes grouped by task |
-| Ships an executable | Yes, one Python file with JSON output | Yes, Python tools with JSON output | No, markdown references only |
-| Decides whether a file is worth compressing | Yes | Not documented in its README | Not documented |
-
 ## FAQ
 
 ### How do I compress a video with an AI coding agent?

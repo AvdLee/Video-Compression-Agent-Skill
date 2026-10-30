@@ -4,8 +4,8 @@ Repository settings (applied 2026-10-30):
 
 - Description: "Agent Skill to compress videos from Claude Code, Cursor or Codex. HEVC and H.264 with ffmpeg or macOS avconvert. Skips files
   that are already efficient, verifies every output, never touches the original."
-- Website: `https://www.videocompression.app/?utm_source=github&utm_medium=repo&utm_campaign=agent-skill`. Point it at a dedicated agent
-  skill page when that exists.
+- Website: `https://www.videocompression.app` (no tracking parameters on the repository URL; the README links carry them). Point it at a
+  dedicated agent skill page when that exists.
 - Topics: `agent-skills`, `claude-skills`, `codex-skills`, `claude-code`, `cursor`, `ai-agents`, `agent-plugins`, `ffmpeg`,
   `video-compression`, `compress-video`, `video-compressor`, `hevc`, `h264`, `ios`, `iphone`, `macos`.
 
