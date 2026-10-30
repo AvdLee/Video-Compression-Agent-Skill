@@ -1,6 +1,6 @@
 # Video Compressor Agent Skill
 
-<p align="center"><img src="skills/video-compression/assets/logo-small.png" alt="Video Compressor logo" width="128" height="128"></p>
+<p align="center"><a href="https://www.videocompression.app/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill"><img src="assets/banner.png" alt="Video Compressor agent skill: compress video from your agent. Works with Claude Code, Cursor and Codex. Also on iPhone and iPad at videocompression.app" width="100%"></a></p>
 
 An [Agent Skill](https://agent-plugins.org) that compresses video files for you. Your agent checks what the machine can do, decides which
 files are worth compressing, encodes them to HEVC (or H.264), verifies every result and leaves the original untouched.
