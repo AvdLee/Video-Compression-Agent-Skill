@@ -175,7 +175,11 @@ The skill works on files on a computer. For videos on an iPhone or iPad, use the
 
 ## About me
 
-I'm Antoine van der Lee, an indie developer. I write [SwiftLee](https://www.avanderlee.com) and build RocketSim and Video Compressor.
+I'm Antoine van der Lee, an indie developer who has been building iOS apps since 2009. I worked on Videoland, the Dutch streaming service, so
+playback, codecs and storage are familiar ground. I have also been editing video for a long time and have made several podcasts, including
+[Going Indie](https://podcast.going-indie.com/), which I host in audio and video.
+
+You can read more on my [About page](https://www.videocompression.app/about/?utm_source=github&utm_medium=readme&utm_campaign=agent-skill).
 
 ## Development
 
