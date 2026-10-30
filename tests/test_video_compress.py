@@ -516,10 +516,13 @@ class RunTests(Base):
         self.assertLessEqual(Path(e["output"]).stat().st_size, 4_000_000)
         self.assertEqual(e["encoder"], "libx265")
 
-    def test_target_h264_compat_discord(self):
-        e = self.compress("h264", "--target", "discord", "--compat")["entry"]
+    def test_target_h264_compat(self):
+        # The generated fixture size varies per ffmpeg build (about 9 to 11 MB), so a fixed Discord limit
+        # would sometimes legitimately skip it. A 5 MB target always needs a re-encode.
+        # The Discord mapping itself is covered by test_target_mode_and_already_under_target.
+        e = self.compress("h264", "--target-mb", "5", "--compat")["entry"]
         self.assertEqual(e["status"], "compressed", e)
-        self.assertLessEqual(Path(e["output"]).stat().st_size, 10_000_000)
+        self.assertLessEqual(Path(e["output"]).stat().st_size, 5_000_000)
         self.assert_independent("h264", e, codec="h264")
 
     def test_batch_folder(self):
