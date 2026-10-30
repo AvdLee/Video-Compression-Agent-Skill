@@ -1,6 +1,6 @@
 // Renders assets/banner.png (the README banner) in the videocompression.app visual language.
 // Needs the `sharp` package. Point SHARP_FROM at any package.json whose node_modules has sharp, for example
-//   SHARP_FROM="/path/to/Storage Cleaner/Website/package.json" node tools/make_banner.mjs
+//   SHARP_FROM="/path/to/a/project/package.json" node tools/make_banner.mjs
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { dirname, join, resolve } from "node:path";
