@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "video-compression",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Compress videos to HEVC or H.264 with ffmpeg or macOS avconvert, skip files that are already efficient, verify every result, and never touch the original.",
   "author": {
     "name": "Antoine van der Lee",
