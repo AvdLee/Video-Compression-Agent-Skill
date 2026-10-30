@@ -41,7 +41,7 @@
     "brandColor": "#3B6FE0",
     "composerIcon": "./skills/video-compression/assets/logo-small.png",
     "logo": "./skills/video-compression/assets/logo.png",
-    "privacyPolicyURL": "https://www.avanderlee.com/privacy-policy/",
+    "privacyPolicyURL": "https://www.videocompression.app/privacy/",
     "termsOfServiceURL": "https://github.com/AvdLee/Video-Compression-Agent-Skill/blob/main/LICENSE"
   }
 }
