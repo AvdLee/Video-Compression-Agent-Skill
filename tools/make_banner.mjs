@@ -1,4 +1,6 @@
 // Renders assets/banner.png (the README banner) in the videocompression.app visual language.
+// Pass "social" to render assets/social-preview.png (1280x640, the GitHub social preview size) instead:
+//   node tools/make_banner.mjs social
 // Needs the `sharp` package. Point SHARP_FROM at any package.json whose node_modules has sharp, for example
 //   SHARP_FROM="/path/to/a/project/package.json" node tools/make_banner.mjs
 import { createRequire } from "node:module";
@@ -9,14 +11,18 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const require = createRequire(process.env.SHARP_FROM ?? import.meta.url);
 const sharp = require("sharp");
 
-const WIDTH = 1600;
-const HEIGHT = 520;
+const social = process.argv[2] === "social";
+const WIDTH = social ? 1280 : 1600;
+const HEIGHT = social ? 640 : 520;
 const FONT = "'SF Pro Display', 'SF Pro', 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif";
 const COLOR = { canvas: "#07101d", ink: "#f6f9ff", soft: "#dce6f5", muted: "#aebdd2", cyan: "#39c6ff", blue: "#477bff", indigo: "#9666ff", action: "#0a84ff" };
 
-const icon = { size: 240, x: 104, y: (HEIGHT - 240) / 2 - 6 };
+const icon = social ? { size: 200, x: 90, y: 150 } : { size: 240, x: 104, y: (HEIGHT - 240) / 2 - 6 };
 const radius = icon.size * 0.2237;
-const textX = 420;
+const textX = social ? 340 : 420;
+const headSize = social ? 78 : 92;
+const headY = social ? [250, 336] : [214, 308];
+const chipY = social ? 392 : 372;
 
 const text = (value, { x, y, size, weight = 700, fill = COLOR.ink, anchor = "start", spacing = 0 }) =>
   `<text x="${x}" y="${y}" font-family="${FONT}" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}" letter-spacing="${spacing}">${value}</text>`;
@@ -32,14 +38,15 @@ const chip = (label, x, y) => {
 
 let chipX = textX;
 const chips = ["Claude Code", "Cursor", "Codex"].map((label) => {
-  const c = chip(label, chipX, 372);
+  const c = chip(label, chipX, chipY);
   chipX += c.width + 14;
   return c.svg;
 });
 
 const ctaLabel = "videocompression.app";
 const ctaWidth = 470;
-const ctaX = WIDTH - 104 - ctaWidth;
+const ctaX = social ? textX : WIDTH - 104 - ctaWidth;
+const ctaY = social ? 470 : HEIGHT - 162;
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
   <defs>
@@ -54,13 +61,13 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${
   <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#cyanGlow)"/>
   <circle cx="${icon.x + icon.size / 2}" cy="${icon.y + icon.size / 2}" r="${icon.size * 1.2}" fill="url(#iconHalo)"/>
   <rect x="${icon.x}" y="${icon.y + icon.size * 0.07}" width="${icon.size}" height="${icon.size}" rx="${radius}" fill="#000" fill-opacity="0.55" filter="url(#iconShadow)"/>
-  ${text("AGENT SKILL", { x: textX, y: 118, size: 24, weight: 700, fill: COLOR.cyan, spacing: 4 })}
-  ${text("Compress video", { x: textX, y: 214, size: 92 })}
-  ${text("from your agent.", { x: textX, y: 308, size: 92 })}
+  ${text("AGENT SKILL", { x: textX, y: social ? 168 : 118, size: 24, weight: 700, fill: COLOR.cyan, spacing: 4 })}
+  ${text("Compress video", { x: textX, y: headY[0], size: headSize })}
+  ${text("from your agent.", { x: textX, y: headY[1], size: headSize })}
   ${chips.join("\n  ")}
-  <rect x="${ctaX}" y="${HEIGHT - 162}" width="${ctaWidth}" height="76" rx="38" fill="${COLOR.action}"/>
-  ${text("Also on iPhone and iPad", { x: ctaX + ctaWidth / 2, y: HEIGHT - 130, size: 20, weight: 600, fill: "#ffffff", anchor: "middle" }).replace('fill="#ffffff"', 'fill="#ffffff" fill-opacity="0.82"')}
-  ${text(ctaLabel, { x: ctaX + ctaWidth / 2, y: HEIGHT - 102, size: 32, weight: 700, fill: "#ffffff", anchor: "middle" })}
+  <rect x="${ctaX}" y="${ctaY}" width="${ctaWidth}" height="76" rx="38" fill="${COLOR.action}"/>
+  ${text("Also on iPhone and iPad", { x: ctaX + ctaWidth / 2, y: ctaY + 32, size: 20, weight: 600, fill: "#ffffff", anchor: "middle" }).replace('fill="#ffffff"', 'fill="#ffffff" fill-opacity="0.82"')}
+  ${text(ctaLabel, { x: ctaX + ctaWidth / 2, y: ctaY + 60, size: 32, weight: 700, fill: "#ffffff", anchor: "middle" })}
   <rect y="${HEIGHT - 10}" width="${WIDTH}" height="10" fill="url(#brand)"/>
 </svg>`;
 
@@ -68,5 +75,5 @@ const iconPng = await sharp(join(root, "skills/video-compression/assets/logo.png
 await sharp(Buffer.from(svg))
   .composite([{ input: iconPng, left: icon.x, top: Math.round(icon.y) }])
   .png({ compressionLevel: 9 })
-  .toFile(join(root, "assets/banner.png"));
-console.log("wrote assets/banner.png");
+  .toFile(join(root, social ? "assets/social-preview.png" : "assets/banner.png"));
+console.log(social ? "wrote assets/social-preview.png" : "wrote assets/banner.png");
